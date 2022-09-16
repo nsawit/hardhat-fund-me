@@ -1,12 +1,9 @@
-require("@nomicfoundation/hardhat-toolbox")
-require("hardhat-deploy")
-require("@nomicfoundation/hardhat-toolbox")
 require("dotenv").config()
 require("@nomiclabs/hardhat-etherscan")
+require("@nomiclabs/hardhat-waffle")
 require("hardhat-gas-reporter")
-require("@nomiclabs/hardhat-ethers")
-
-const { getUsedIdentifiers } = require("typechain")
+require("solidity-coverage")
+require("hardhat-deploy")
 /** @type import('hardhat/config').HardhatUserConfig */
 
 const RINKEBY_RPC_URL = process.env.RINKEBY_RPC_URL
@@ -18,34 +15,26 @@ module.exports = {
     defaultNetwork: "hardhat",
     //solidity: "0.8.8",
     solidity: {
-        compilers: [
-            { version: "0.8.8" },
-            { version: "0.8.7" },
-            { version: "0.6.6" },
-        ],
+        compilers: [{ version: "0.8.8" }, { version: "0.6.6" }],
     },
     networks: {
-        rinkeby: {
-            url: RINKEBY_RPC_URL,
-            accounts: [K],
-            chainId: 4,
-            blockConfirmations: 6,
-        },
-        polygon: {
-            url: "https://rpc-mumbai.maticvigil.com/",
-            accounts: [K],
-            chainId: 80001,
-        },
-        localhost: {
-            // url: "http://127.0.0.1:8545/",
-            chainId: 31337,
-        },
+        // rinkeby: {
+        //     url: RINKEBY_RPC_URL,
+        //     accounts: [K],
+        //     chainId: 4,
+        //     blockConfirmations: 6,
+        // },
+        // polygon: {
+        //     url: "https://rpc-mumbai.maticvigil.com/",
+        //     accounts: [K],
+        //     chainId: 80001,
+        // }
     },
     etherscan: {
         apiKey: ETHK,
     },
     gasReporter: {
-        enabled: true,
+        enabled: false,
         currency: "USD",
         coinmarketcap: COINMARKETCAP_API,
         token: "ETH",
